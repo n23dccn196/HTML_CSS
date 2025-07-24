@@ -1,0 +1,91 @@
+/*---------------------------------------------------------*/
+/*--------------------- BOX MODEL -------------------------*/
+
+/*-------------------- 0. Cấu trúc box --------------------
+margin
+    border
+        padding
+            content
+*/
+
+/*-------------------- 1. Phân tích box -------------------*/
+.box {
+  /* 1. Content: Nội dung text, ảnh, video,... */
+  height: 200px;
+  width: 200px;
+  background: url(./img/anh.jpg);
+  /* 2. Padding: khoảng đệm */
+  padding: 10px; /* all */
+  padding: 10px 20px; /* top/bottom - left/right */
+  padding: 10px 20px 30px; /* top - left/right - bottom */
+  padding: 10px 20px 30px 40px; /* top - right - bottom - left */
+  /* 3. Border: viền */
+  /* syntax: line-width line-style color*/
+  border: 10px solid red; /* viền dày 10px, nét liền, màu đỏ */
+  /* vẽ theo cạnh */
+  border-top: 5px dashed red;
+  border-right: 5px dashed red;
+  border-bottom: 5px dashed red;
+  border-left: 5px dashed red;
+  /* vẽ theo thuộc tính */
+  border-width: 10px 20px; /* hướng như padding*/
+  border-style: solid dashed; /* hướng như padding*/
+  border-color: red blue; /* hướng như padding*/
+  /* border-radius: bo góc */
+  border-top-left-radius: 10px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 40px;
+  border-radius: 10px; /* all */
+  border-radius: 10px 20px; /* tl/br - tr/bl */
+  border-radius: 10px 20px 30px; /* tl - tr/bl - br */
+  border-radius: 10px 20px 30px 40px; /* tl-tr-br-bl*/
+  /* 4. Margin: khoảng cách với box khác */
+  margin-top: 20px;
+  margin-right: -10px;
+  margin-bottom: -5px;
+  margin-left: 7px;
+  margin: 20px 15px; /* hướng như padding*/
+}
+
+/*---------------- 2. SỬA LỖI MARGIN-COLLAPSE -------------------*/
+/* TH1: 2 box này sẽ bị collapse, trình duyệt sẽ chỉ áp dụng margin của 
+thằng lớn hơn là box2, 
+(lưu ý: collapse chỉ xuất hiện với margin theo chiều dọc*/
+.box1 {
+  height: 200px;
+  width: 200px;
+  margin-bottom: 10px;
+}
+.box2 {
+  height: 200px;
+  width: 200px;
+  margin-top: 20px;
+}
+/* TH2: giả sử box_parent là cha của box_child, trường hợp dưới đây 
+trình duyệt áp dụng margin cho box_child nhưng cả box_parent cũng 
+bị kéo theo */
+.box_parent {
+  height: 200px;
+  width: 200px;
+}
+
+.box_child {
+  width: 50%; /* 100px */
+  margin-top: 70px;
+}
+
+/* khắc phục: áp dụng display: flex cho thẻ cha của 2 box đó  */
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/*---------------- 3. Outline và box-sizing -----------------*/
+.box {
+  outline: 10px solid red; /* viền ngoài border, đè lên margin */
+  outline-offset: 10px; /* quy định khoảng cách với border */
+  box-sizing: content-box; /* h,w chỉ gồm content  */
+  box-sizing: border-box; /* giới hạn h,w cho cả ptu gồm cả border  */
+}
+/*---------------------------------------------------------*/

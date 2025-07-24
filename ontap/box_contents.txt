@@ -1,0 +1,72 @@
+/*--------------------- BOX MODEL -------------------------*/
+/*---------------------------------------------------------*/
+
+<!-- 1. Cấu trúc chung -->
+
+Margin - Khoảng cách với các phần liền kề khác 
+    Border - Viền của phần tử (nét đứt, nét liền, ...)
+        Padding - Khoảng đệm nội dung và viền (không chứa nội dung)
+            Content - Nội dung (width, height): hình ảnh, video, text, ...
+
+
+<!-- 2. Content -->
+
+- Định kích thước của phần tử width, height
+- Nội dung có thể là hình ảnh, video, hay text được gói trong 1 kích thước quy định
+
+<!-- 3. Padding -->
+
+- viết rõ ràng: padding-top, padding-right, padding-bottom, padding-left
+- viết gọn: padding: 10px, 20px, 30px, 40px (theo chiều kim đồng hồ: top,right,bottom,left) (có thể bỏ bớt chỉ số)
+
+<!-- 4. Border -->
+
+- syntax: <line-width> <line-style> <color>
+    trong đó:
+    - line-width: độ dày viền (5px, 10px, ...)
+    - line-style: solid(nét liền), dashed(nét đứt), dotted(các chấm dot), double(2 đường song song), 
+        viền 3D: groove, ridge, inset, outset
+    - color: màu viền (red, blue, #000, #fff,...)
+    cách dùng: 
+    1- border: 10px solid blue; -> vẽ viền cho cả 4 hướng
+    2- border-top: 5px dashed red; -> vẽ viền trên, tương tự cho các hướng còn lại: border-right, border-bottom, border-left
+    3- Hoặc ghi tường minh (giống padding)
+        + border-width: 10px 11px 12px 13px
+        + border-style: solid dashed groove double
+        + border-color: red blue green yellow
+- Bo tròn góc: 
+    1.border-radius: 10px 20px 30px 40px (tương ứng: top-left, top-right, bottom-right, bottom-left) (có thể bỏ bớt chỉ số)
+    2.Hoặc ghi tường minh: 
+        border-top-left-radius: ;
+        border-top-right-radius:  ;
+        border-bottom-right-radius: ;
+        border-bottom-left-radius: ;
+
+
+<!-- 5. Margin -->
+- Syntax giống hệt padding
+- Viết tường minh: margin-top, margin-right, margin-bottom, margin-left
+- Viết gọn: margin: 10px 20px 30px 40px (theo chiều kdh, có thể bỏ bớt) 
+
+-->??/ SỬA LỖI MARGIN-COLLAPSE
+.. Khái niệm: Margin-collapse là hiện tượng chồng lặp thuộc tính margin khi 2 phần tử liền kề
+cùng thiết lập thuộc tính margin với phần tử còn lại theo CHIỀU DỌC: top và bottom (nó sẽ chỉ
+áp dụng margin cho thằng có margin lớn hơn), 
+
+.. a. TH1: xảy ra với 2 khối div liền kề
+Khắc phục bằng cách dùng display: flex cho thẻ cha, hoặc chỉ áp dụng margin cho 1 chiều: (top hoặc bot)
+.. b. TH2: xảy ra với phần tử có quan hệ cha con khi margin cùng chiều (top or bot)
+Mô tả: thẻ con khi có margin lớn hơn sẽ kéo theo thẻ cha chứ không cách thẻ cha như mong muốn
+Khắc phục bằng cách dùng display: flex cho thẻ cha
+
+<!-- 6. Outline -->
+.. Khái niệm: Đường viền bao quanh mép ngoài cùng của đối tượng, không tăng kích thước ptu, chiếm cả phần Margin
+nếu kích thước lớn hơn (tức là nó tính từ border, đè lên phần margin)
+.. Syntax (giống border, tuy nhiên không thể vẽ theo nhiều hướng như border)
+    vd: outline: 10px solid red; (chỉ có thể viết theo syntax này)
+    Có thêm thuộc tính offset (giúp outline cách viền border 1 khoảng): outline-offset: 10px;
+
+<!-- 7. Sizing -->
+.. Có 2 giá trị: content-box và border-box (trong dự án thực, border-box dùng thường xuyên hơn)
+    content-box (default): sẽ quy định kích thước cho phần content, khi mở rộng padding, border thì đối tượng phình ra 
+    border-box: sẽ quy định kích thước cho cả đối tượng, phần content sẽ bị thu hẹp khi mở rộng padding, border

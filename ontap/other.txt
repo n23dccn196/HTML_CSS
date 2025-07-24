@@ -1,0 +1,151 @@
+<!--1. CSS mặc định-->
+Mô tả: khi ta viết các thẻ h1, h2, a, ... thì không phải những thẻ đó có format
+như vậy, mà là do trình duyệt sẽ tự thêm các css mặc định vào
+
+<!--2. Reset css -->
+Mô tả: Đưa mọi thông số css về hư vô để code css từ đầu, không sử dụng css từ trình duyệt
+Link : https://meyerweb.com/eric/tools/css/reset/
+
+<!--3. Kế thừa trong css - Inheritant -->
+Mô tả: một số thuộc tính trong css có thể được kế thừa từ cha sang con
+ví dụ: color, font-size, font-family,... xem thêm trên gg
+
+<!--4. Block, Inline và Inline-Block -->
+- Link: https://www.w3schools.com/html/html_blocks.asp
+- Block: Trình duyệt tự động thêm khoảng trắng vào trước và sau phần tử,
+mỗi thẻ block đều nằm trên một dòng 
+- Inline: hộp chỉ có kích thước phụ thuộc vào nội dung bên trong nó,
+Một số thuộc tính không áp dụng được với inline: padding-top, padding-bottom
+margin-top, margin-bottom, width, height, min-width, min-height,
+Sở dĩ inline không áp dụng được các thuộc tính trên là vì nó sinh ra để nằm trên 1 dòng
+muốn áp dụng được thì phải chuyển display sang Inline-Block
+- Inline-Block: là sự kết hợp từ Inline và Block
+
+<!--5. Unit Explained -->
+- Đơn vị tuyệt đối: cm, mm, in(inches: 2,54cm), px(pixels: 1/96 in), pt(points: 1/72 in), pc(picas: 12pt)
+Cố định kích thước phần tử một cách tuyệt đối, cho dù có phóng to hay thu nhỏ cửa sổ
+- Đơn vị tương đối: em, ex, ch, rem, vw, vh, vmin, vmax, %
+Kích thước phần tử thay đổi tùy thuộc vào kích thước thẻ cha, hay khi phóng to thu nhỏ cửa sổ
+- Link: https://www.w3schools.com/cssref/css_units.php
+    .. 5a. Absolute lengths (Độ dài tuyệt đối): dễ dàng rồi
+    .. 5b. Relative lengths (Độ dài tương đối): 
+        . 5b-1. % : 1% so với phần tử cha
+        . 5b-2. vw : 1% chiểu rộng khung nhìn (viewport: phần hiển thị trên trình duyệt)
+        . 5b-3. vh : 1% chiều cao khung nhìn (viewport)
+        . 5b-4. em : kích thước gấp 1 lần font chữ hiện tại (có kế thừa) 
+        . 5b-5. rem : kích thước gấp  1 lần font chữ root (html) (không có kế thừa)
+
+- Kĩ thuật quy đổi trong rem: mặc định trình duyệt sẽ thường để kích thước font chữ root (html) là 16px 
+(có thể tùy chỉnh trong cài đặt sang font chữ rất lớn tối đa là 24px), tuy nhiên 16px là số khá lẻ khi thực hiện 
+các thay đổi rem với các thẻ khác, do đó ta cần biết đến  kĩ thuật quy đổi từ 16px sang 10px để dễ tính toán;
+Cụ thể ta chỉnh như sau: html { font-size: 62.5%; }, 
+
+<!--6. Css colors từ A đến Z -->
+- rgb(x,y,z) hoặc rgb(x y z) là 1 hệ màu gồm 3 chỉ số tương ứng red, green, blue tạo thành nhiều tổ hợp màu, 0 <= x,y,z <= 255
+- rgba(x,y,z,a) hoặc rgb(x,y,z,a) là hệ màu rgb nhưng có thêm chỉ số trong suốt Alpha với 0 <= a <= 1
+    có thể viết rgba(x y z / a) hoặc rgb(x y z / a) : phải dùng dấu '/' để ngăn cách kênh màu với kênh trong suốt
+- Hệ màu hex (#rrggbb) : giá trị mỗi kênh màu chạy từ 00 đến FF (2 giá trị giống nhau có thể viết gọn thành 1, vd: #ffffff viết thành #fff)
+    Với hệ màu hex vẫn có thể thêm kênh Alpha vào bằng cách thêm vào cuối 00->FF, vd: #23ff1150;
+- Tên màu: thường chỉ dùng cho những màu phổ biến
+    Link: https://htmlcolorcodes.com/color-names/
+- currentcolor: dùng chung màu sắc cho các thẻ trong cùng 1 khối css, có thể kế thừa từ cha nếu con không được định nghĩa màu
+
+<!--7. Css Fonts Explained từ A đến Z -->
+- Font không có gai ở đầu chữ cái: Sans serif
+- Font có gai ở đầu: serif
+- Font có cùng độ rộng: Monospace 
+- Font viết tay: handwriting
+--> Font-family: 1 nhóm font có nhiều font con với nhiều định dạng: in đậm, in nghiêng, gạch chân,...   
+- System-fonts: mỗi hệ điều hành sẽ có 1 kiểu font nhất định, có loại font chỉ có ở hdh này nhưng ko có ở hdh khác
+    Lợi ích: sử dụng font có sẵn trên hệ thống của hdh sẽ giúp tốc độ trang web nhanh hơn
+    Link: https://www.cssfontstack.com/
+- Nhúng font: giúp trang web hiển thị nhất quán như nhau trên mọi hdh
+- font-weight: độ dày chữ, từ 100-900
+- line-height: độ dãn dòng, vd: h1 {font-size:16px; line-height:1.5;} tức là độ dãn dòng gấp 1.5 lần font hiện tại, tức là 24px
+- letter-spacing: khoảng cách giữa các kí tự 
+- word-spacing: khoảng cách giữa các từ
+- text-align: justify(căn dàn đều 2 bên), left(căn trái), right(căn phải), center(căn giữa)
+(text-align chỉ căn giữa so với box chứa nó)
+- text-decoration: none(kcj), underline(gạch chân), line-through(gạch xóa text), overline(gạch trên đầu) 
+Có thể quy định nhiều kiểu: vd: underline dotted blue 5px; (giống border)
+- text-indent: thụt lề (âm: thụt trái, dương: thụt phải)
+- text-transform: uppercase(viết hoa hết), lowercase(viết thường hết), capitalize(viết hoa chữ cái đầu mỗi từ)
+- white-space: normal(mặc định), nowrap(không xuống dòng, kể cả chạm tới lề), pre(tác dụng giống thẻ pre trong html)
+pre-wrap(giống pre nhưng xuống dòng khi gặp lề), pre-line(giống pre-wrap nhưng loại khoảng trắng thừa trên dòng)
+- word-break: ngắt dòng khi gặp lề (tránh trường hợp người dùng nhập 1 từ quá dài phá vỡ cấu trúc của khối thiết kế)
+sử dụng word-break: break-all; để xuống dòng toàn bộ khi gặp lề
+- text-shadow: gồm horizontal, vertical, Blur, Colors;
+ví dụ: 20px 30px 0px red; -- đổ bóng theo hướng sang phải 20px, hướng xuống dưới 30px, màu đỏ
+- overflow: có 4 giá trị: 
+    + visible (mặc định): hiển thị nội dung, kể cả vượt quá box
+    + hidden: ẩn những nội dung vượt box chứa
+    + scroll: tạo thanh cuộn
+    + auto: box đủ chứa nội dung -> ẩn thanh cuộn, nội dung vượt box -> hiện thanh cuộn
+- overscroll-behavior: hành xử của trình duyệt đối với thanh cuộn, có 3 giá trị: 
+    + auto: khi cuộn box con tới điểm giới hạn thì nó sẽ cuộn tiếp box bên ngoài (dùng con lăn)
+    + contain: chỉ cho phép rê chuột ở đâu chỉ cuộn được ở đó
+    + none: trên pc thì tác dụng giống contain, chỉ khác trên mobile
+Link: https://developer.mozilla.org/en-US/docs/Web/CSS/overscroll-behavior
+- Tùy biến thanh cuộn trong css: 
+Link: https://www.w3schools.com/howto/howto_css_custom_scrollbar.asp
+- Cách để tạo dấu 3 chấm cho overflow: hidden; 
+    + c1: sử dụng text-overflow: ellipsis; -- cách này chỉ hỗ trợ tốt khi kết hợp whitespace: nowrap
+    + c2: hiệu quả hơn, sử dụng đoạn mã sau: 
+        line-clamp: 2;         
+        -webkit-line-clamp: 2; -- tùy chỉnh giá trị để hiện dấu 3 chấm ở dòng mong muốn
+        -webkit-box-orient: vertical;
+        display: -webkit-box;  
+
+<!--8. Background-image -->
+- Background-image: url(ảnh 1), url(ảnh 2),... // có thể truyền nhiều hình ảnh, ảnh nào ghi trước thì nằm trên
+Hoặc có thể đặt là none để không hiển thị ảnh  
+- Background-repeat: no-repeat (1 ảnh duy nhất), repeat-x(lặp theo chiều ngang), repeat-y (lặp theo chiều dọc)
+repeat (lặp theo 2 chiều)  
+- Background-size: contain(cố co dãn ảnh để nhét vào trong box chứa, ảnh sẽ lặp ảnh
+nếu box chứa còn chỗ trống), cover (cố gắng co dãn ảnh để bọc vừa box chứa, phần ảnh còn dư sẽ cắt bỏ),
+hoặc truyền kích thước: 100px 100% (ảnh rộng 100px, cao 100% kích thước box)
+- Background-position: là vị trí bắt đầu co dãn ảnh, nhìn chung kết quả khá giống tính năng drop ảnh
+bao gồm: top, right, bottom, left, top left, top right, bottom right, bottom left, center
+ngoài ra còn có thể dùng 2 chỉ số x y để chỉ tọa độ bắt đầu tại mọi chỗ, 
+ví dụ: 10% 10% hoặc 100px 100px
+- linear-gradient(direction, color-stop1, color-stop2,...): dùng để tạo dải màu sắc cho Background
+trong đó: direction: là hướng chuyển màu(mặc định là top->bot), vd: direction: to top left (có 8 hướng giống bg-position) hoặc 45deg(đổ hướng 45 độ) 
+color: yêu cầu tối thiểu 2 màu, stop: là % không áp dụng chuyển sắc
+- Background-attachment: có 3 giá trị là scroll(mặc định, khi cuộn chuột ảnh và box chứa di theo), fixed(khi cuộn chuột, ảnh cố định, box di chuyển), 
+local(khi cuộn chuột, box cố định, ảnh trong box di chuyển theo text)
+- Background-clip: quy định vùng đổ nền, có 3 giá trị: border-box, padding-box, content-box
+- Background-origin: cho biết ảnh bắt đầu từ vùng nào, có 3 giá trị: border-box, padding-box, content-box
+- Shorthand: background: bg-color bg-image position/bg-size bg-repeat bg-origin bg-clip bg-attachment initial|inherit;
+Link: https://www.w3schools.com/cssref/css3_pr_background.php
+
+- Ngoài ra có thể tìm hiểu thêm: @supports, ví dụ:
+@supports (backdrop-filter: blur(5px) invert(80%)) or
+  (-webkit-backdrop-filter: blur(5px) invert(80%)) {
+  .box {
+    background-color: rgba(128, 128, 128, 0.168);
+    backdrop-filter: blur(5px) invert(80%);
+    -webkit-backdrop-filter: blur(5px) invert(80%);
+  }
+}
+
+<!--9. Backdrop filter -->
+- blur(10px): làm mờ đi 10px, invert(80%): đảo ngược màu 80%, sepia(90%): cổ điển 90%, ...
+- xem thêm tại Link: https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter
+- ngoài ra có thể áp dụng nhìu filter ngăn cách bởi phím cách, ví dụ: backdrop-filter: url(filters.svg#filter) blur(4px) saturate(150%);
+
+<!--10. Clip-Path Css -->
+- Mô tả: Tạo một vùng cắt, nội dung trong vùng cắt được hiển thị, phần bên ngoài bị ẩn đi
+- Một số giá trị: 
+    + circle(50% at 50% 40%) -> cắt hình tròn với tâm là 50% của max(h,w) tính cả border và padding,
+        at để chỉ tọa độ của ảnh là 50% của width, 40% của height (tính cả border và padding) 
+        Quy ước: gốc ảnh nằm ở tọa độ (x,y) = (0,0) tức là top left
+    + inset(20px 30px 40px 50px round 1px 2px 3px 4px) cắt hình chữ nhật, 
+        round dùng để làm bo tròn các góc cắt 
+    Lưu ý: 4 chỉ số như padding và có thể bỏ bớt
+    + Polygon(0 0, 100% 0, 100% 100%, 30% 100%, ...) -> cắt hình đa giác 
+    muốn cắt bao nhiêu điểm thì liệt kê các tọa độ điểm cần cắt ra
+
+<!--11. Box-shadow css -->
+- Mô tả: tạo vùng đổ bóng cho box
+- Syntax: box-shadow: x y blur độ_lan_rộng colors
+- Vi du: box-shadow: 10px 10px 10px 0 red;

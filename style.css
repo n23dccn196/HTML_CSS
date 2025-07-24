@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+}
+
+.box {
+  background-color: blue;
+  border: 2px solid red;
+}
+
+.container {
+  height: 300px;
+  display: flex;
+  background-color: yellow;
+}
+
+
+.box1 {
+  flex-grow: 2;
+}
+
+.box2 {
+
+  flex-grow: 1;
+}
+

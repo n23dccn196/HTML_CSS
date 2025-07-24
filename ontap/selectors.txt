@@ -1,0 +1,75 @@
+<!-- 1. simple selectors -->
+
+p // chon toan bo the p
+#test_id // chon the co id la test_id 
+.nitro // chon toan bo the thuoc class nitro
+
+<!-- 2. Combinator selectors -->
+
+* // chon tat ca cac the (universal selector)
+.nitro.demo // chi chon nhung the thuoc dong thoi 2 class nitro va class demo
+p.nitro // chi chon nhung the p thuoc class nitro
+div, p // chon tat ca the div va tat ca the p
+div p // chon tat ca the p la con cua the div
+div > p // chon tat ca the p la con truc tiep cua the div 
+div + p // chon 1 the p nam lien sau the div (neu the p khong lien sat the div thi khong chon)
+div ~ p // chon tat ca the p nam sau div (chi can nam sau, khong can lien sat)
+ns | p // chon tat ca the p nam trong khong gian ten ns
+
+<!-- 3. Attribute selectors -->
+
+[title] // chon tat ca nhung the co thuoc tinh title
+[title*="cat"] // chon nhung the co title chua CHUỖI CON 'cat' ben trong chuoi (vi du: "   cattdog")
+[title^="cat"] // chon nhung the co title BẮT ĐẦU bang 'cat' (vi du: "catsfkjak")
+[title~="cat"] // chon nhung the co title chua TỪ 'cat' ben trong chuoi (vi du: "   cat  dog")
+[title$="cat"] // chon nhung the co title KET THUC bang "cat" (vi du: "pig dog cat" hoac "pigdogcat")
+[title|="cat"] // chon nhung the co title="cat" (khop chinh xac) hoac BAT DAU bang 'cat-' (vi du: "cat" hoac "cat-dog   ")
+[title="cat"] // chon nhung the co title="cat" (khop chinh xac)
+
+<!-- 4. Pseudo classes -->
+
+p:hover // chon tat ca the p khi di chuot qua
+p:active // chon tat ca the p khi nhan giu chuot
+a:link // chon tat ca the a CHƯA click vao
+a:visited // chon tat ca the a ĐÃ click truy cap
+div:empty // chon tat ca the div KHÔNG CÓ NỘI DUNG
+#home:target // chon the CÓ ID="home" khi tren url co hash tuong ung
+.nitro:not(p) // chon tat ca the thuoc class nitro, KHÔNG TÍNH THẺ P
+
+    <!-- Child selectors -->
+
+    p:only-child // phai la THẺ CON DUY NHẤT truoc, tiep theo phai la the p (neu co 2 the tro len thi khong chon)
+    p:first-child // phai la THẺ CON ĐẦU TIÊN truoc, tiep theo phai la the p (neu bi ngan cach boi the khac thi khong chon)
+    p:last-child // phai la THẺ CON CUỐI CÙNG truoc, tiep theo phai la the p (neu bi ngan cach boi the khac thi khong chon)
+    p:nth-child(n, 2n+1 , odd, even) // phai la THẺ CON THỨ N truoc (tinh tu tren xuong), 
+        tiep theo phai la the p
+    p:nth-last-child(n, 2n+1 , odd, even) // phai la THẺ CON THỨ N truoc (tinh tu duoi len),
+        tiep theo phai la the p
+    
+    <!-- Type selectors -->
+
+    p:only-of-type // chi can co DUY NHẤT 1 THẺ P thi chon (neu co 2 the tro len thi khong chon)
+    p:first-of-type // chi can CÓ THẺ P thi se chon duoc the p ĐẦU TIÊN
+    p:last-of-type // chi can CÓ THẺ P thi se chon duoc the p CUỐI CÙNG
+    p:nth-of-type(n, 2n+1 , odd, even) // chi cần CÓ ĐỦ N THẺ P thi se chon duoc the p thu n (tu tren xuong)
+    p:nth-last-of-type(n, 2n+1 , odd, even) // chi cần CÓ ĐỦ N THẺ P thi se chon duoc the p thu n (tu duoi len)
+
+<!-- 5.Pseudo elements -->
+
+p::first-line  // giả sử thẻ đoạn văn trong thẻ p có nhiều dòng, nó chọn dòng đầu tiên
+    (lưu ý: thuộc tính này không áp dụng cho thẻ inline, chỉ block hoặc inline-block)
+p::first-letter  // chọn chữ cái đầu tiên của thẻ p
+p::selection // chọn vùng đang được bôi đen trong các thẻ p 
+li::marker // chọn các điểm đánh dấu của phần tử li 
+.box::before // thêm phần tử vào trước class box
+.box::after // thêm phần tử vào sau class box
+    dùng thuộc tính ` content:"" ` để truyền nội dung vào phần tử giả before, after
+Link: https://www.w3schools.com/css/css_pseudo_elements.asp
+
+<!-- 6. Quy tắc thứ tự ưu tiên -->
+!important >
+    inline style(style="") >
+        ID selectors(#) > 
+            class (.), pseudo-class(:) > 
+                elements(h1,h2,p,a) > 
+                    universal selectors(*)

@@ -1,0 +1,152 @@
+/*------------------------ CSS PROPERTY --------------------------*/
+/*----------------------------------------------------------------*/
+
+/* ------------------------ pointer-events ---------------------- */
+.box {
+  /* tạo hiệu ứng đổ bóng //* 2 giá trị bắt buộc: x & y */
+  box-shadow: 10px 10px 10px 0 red; /* x y độ_mờ độ_lan_rộng màu */
+  box-shadow: inset 10px 35px 4px 15px yellow; /* bóng đổ lên trên nền đối tượng */
+  box-shadow: 160px 0 green, 0 160px red; /* đổ nhiều bóng */
+}
+/* ------------------------ pointer-events ---------------------- */
+img, a {
+  pointer-events: none; /* ngăn chặn click các thẻ anchor và không cho phép thao tác trên ảnh*/
+  pointer-events: auto; /* mặc dịnh, ngược lại với none */
+}
+/* ------------------------- Lazy loading ----------------------- */
+
+/* html: <img loading="lazy"/> *//* yêu cầu trình duyệt chỉ load ảnh khi lướt tới, thay vì load hết từ đầu */
+
+/* ------------------------ counters users ---------------------- */
+.box {
+  counter-reset: inc; /* tạo 1 biến inc, reset = 0 khi gặp class box */
+}
+h2 {
+  counter-increment: inc; /* tăng biến inc lên 1 đơn vị khi gặp thẻ h2 */
+}
+h2::before {
+  content: counter(inc); /* truyền biến đếm vào trước thẻ h2 */
+}
+/* ------------------------ css calculator ---------------------- */
+.box {
+  height: calc(100px + 2px); /* với toán tử cộng trừ bắt buộc phải có dấu cách*/
+  height: calc(100px - 2px);
+  height: calc(100px * 2); /* với toán tử nhân chia ko bắt buộc có dấu cách, phép nhân giao hoán được, phép chia thì bắt buộc phần có đơn vị phải viết trước*/
+  height: calc(100px/2);
+}
+/* ------------------------ css variables ---------------------- */
+:root { /* root tương ứng với thẻ html */
+  --box-height: 100px; /* khai báo biến, biến này chỉ áp dụng cho chính thẻ khai báo và các thẻ con của nó */
+  --box-color: #000;
+}
+
+h2 {
+  color: var(--box-color, purple); /* áp dụng thuộc tính color đã khai báo purple là thuộc tính backup, có thể có hoặc không */
+}
+/* ------------------------ css positions---------------------- */
+.box1 {
+  position: static; /* (mặc định), theo quy tắc thông thường */
+  position: relative; left: 40px; /* cho phép di chuyển class box1 cách lề trái 40px so với vị trí ban đầu vốn có, ngoài ra còn có: top, right, bottom */
+  position: absolute; /* đưa khối box1 lên layer trên layer ban đầu vẫn áp dụng top, left, ... được 
+		nhưng nó sẽ cách tổ tiên gần nhất có thuộc tính position:relative (nếu không có thì mặc định là html ) */
+  position: fixed; /* đưa khối box1 lên layer trên layer ban đầu và fix cứng nó, khi kéo thanh cuốn nó vẫn cố định */
+  position: sticky; /*  thẻ được chọn sẽ dính vào thẻ cha gần nhất có thanh cuộn */
+  z-index: 1; /* chỉ định vị trí layer, chỉ số cao hơn thì nằm trên, áp dụng khi các phần tử có cùng position (trừ static)  */
+}
+/* ------------------------ css page layout---------------------- */
+/* ========================== FLOAT LAYOUT ====================== */
+img.pic1 {
+  float: left; /* ảnh sẽ trôi khỏi luồng và sang trái, các thẻ khác sẽ bao quanh nó */
+  /* hoặc right */
+}
+p:last-child {
+  clear: left; /* thẻ p cuối cùng sẽ không bao quanh ảnh .pic1, hoặc right, hoặc both */
+}
+/* ========================== FLEX BOX ========================== */
+/* Lưu ý: theo mặc định flexbox, chiều ngang quy định bởi main axis
+  Chiều dọc quy định bởi cross axis */
+.box {
+  display: flex; /* Đưa phần tử vào container riêng, và không tuân theo quy tắc mặc định nào, tùy biến riêng */
+  gap: 10px; /* giống margin */
+}
+/*..............flex containers
+Mô tả: nhóm thuộc tính khai báo trong class cha*/
+.container {
+  /* justify-content */
+
+  justify-content: start; /* default, dồn qua sát lề trái (hoặc dùng left) */
+  justify-content: end; /* dồn qua sát lề phải (hoặc dùng right) */
+  justify-content: center; /* dồn hết vào giữa */
+  justify-content: space-between; /* 2 items ngoài cùng dồn sát lề, 
+    khoảng cách giữa 2 items liền kề đều bằng nhau */
+  justify-content: space-around; /* mọi items đều cách xung quanh khoảng như nhau */
+  justify-content: space-evenly; /* tất cả items cách đều nhau, cách cả lề */
+
+  /* align-items */
+
+  align-items: stretch; /* default, dãn items để cao bằng container
+    lưu ý: chỉ dãn những items chưa định nghĩa height trong css */
+  align-items: flex-start; /* dồn hết items lên cross start */
+  align-items: flex-end; /* dồn hết items xuống cross end */
+  align-items: center; /* căn items vào giữa trục cross axis */
+  align-items: baseline; /* căn theo đường cơ sở */
+
+  /* flex-wrap */
+
+  flex-wrap: nowrap; /* default, Không xuống dòng */
+  flex-wrap: wrap; /* Xuống dòng khi đầy, cứ tưởng tượng mỗi hàng như là 1 container con, align-items và justify-content sẽ áp dụng cho từng dòng */
+  flex-wrap: wrap-reverse; /* Vừa xuống dòng, vừa đảo ngược (cross-start thành cross-end) */
+
+  /* align-content 
+
+    -- khắc phục nhược điểm chỉ căn theo dòng của align-items khi dùng flex-wrap */ 
+  align-content: stretch; /* default, dãn hết items trên mỗi hàng vừa container con */
+  align-content: flex-start; /* dồn hết các hàng items lên cross-start*/
+  align-content: flex-end; /* dồn hết các hàng items xuống cross-end */
+  align-content: center; /* dồn hết các hàng items vào giữa */
+  align-content: space-around; /* khoảng trống xung quanh mỗi hàng items bằng nhau */
+  align-content: space-between; /* 2 hàng items trên cùng với dưới cùng nằm sát lề, khoảng cách giữa 2 hàng items liền kề bằng nhau */ 
+
+  /* flex-direction */
+
+  flex-direction: row; /* default, trục main nằm ngang: main-start đến main-end*/ 
+  flex-direction: row-reverse; /* đảo ngược chiều của row: main-end đến main-start */
+  flex-direction: column; /* trục main nằm dọc */
+  flex-direction: column-reverse; /* đảo ngược chiều của column */ 
+/* LƯU Ý : START & END KHÔNG BỊ ẢNH HƯỞNG BỞI FLEX-DIRECTION, KHÁC VỚI FLEX-START & FLEX-END (nên dùng cái dưới này hơn) */
+
+  /* flex-flow */
+  flex-flow: wrap row; /* thực ra flex-flow là gộp flex-wrap + flex-direction */
+}
+
+/*..............flex items
+Mô tả: nhóm thuộc tính khai báo trong các phần tử con */
+.container .box {
+
+  /* align-self 
+    tác dụng giống align-items nhưng áp dụng cho 1 item chỉ định */ 
+  align-self: strech; /* dãn item .box cao vừa box chứa */
+  align-self: flex-start; /* dồn item .box lên trên cross-start */
+  align-self: flex-end; /* dồn item .box xuống cross-end */
+  align-self: center;  /* dồn item .box vào giữa */
+  align-self: baseline; /* căn item .box theo đường cơ sở */
+
+  /* flex-grow */
+  flex-grow: 1; /* nếu 1 hàng items có 3 ptu đều có flex-grow:1; thì mỗi item chiếm 1/3 */
+
+  /* flex-shrink */
+	flex-shrink: 0; /* không co lại, tạo thanh cuốn để giữ đúng kích thước khối*/
+  flex-shrink: 1; /* default, ngoài ra : 2 | 3 | 4 ... 
+    tương ứng khả năng co lại của item để thích nghi với không gian hạn chế  */
+
+  /* flex-basis*/
+  flex-basis: 30%; /* set size item theo chiều main-axis, thường thì giống width, nhưng nếu để flex-direction:column; thì nó sẽ khác 
+    độ ưu tiên: min-width/max-width > flex-basis > width > content-width */
+  
+  /* flex shorthand */
+  flex: 1 0 30px; /* thứ tự: fl-grow fl-shrink fl-basis */
+
+  /* order */  
+  order: 0; /* default, ngoài ra: 1, 2, 3,... thay đổi thứ tự các item trong container */
+}
+
